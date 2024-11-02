@@ -1,0 +1,1 @@
+'resnet101' download Path : 'https://download.pytorch.org/models/resnet101-5d3b4d8f.pth'
