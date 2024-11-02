@@ -1,5 +1,5 @@
 
-function [x,y] = cgr(seq)
+function [x, y] = cgr(seq)
     len = length(seq);
     x(1) = 0.5; y(1) = 0.5;
     for j = 1:len
