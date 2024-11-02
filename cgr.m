@@ -19,8 +19,4 @@ function [x,y] = cgr(seq)
     end
     x(1) = [];
     y(1) = [];
-%     figure;
-%     plot(x,y,'.');
-%     xlim([0,1]);
-%     ylim([0,1]);
 end
