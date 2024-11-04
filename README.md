@@ -1,5 +1,5 @@
     CFPLncLoc
-    A novel deep learning model uses Chaos Game Representation (CGR) images of lncRNA sequences to predict multi-label lncRNA subcellular localization.
+    A novel deep learning model uses Chaos Game Representation (CGR) images of lncRNA sequences and Multi-scale feature fusion (MFF) model Centralized Feature Pyramid (CFP) to predict multi-label lncRNA subcellular localization.
 
     Requirements
     python==3.8
