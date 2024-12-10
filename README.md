@@ -28,12 +28,12 @@
             Benchmark dataset: 219 samples from H. sapiens
             Independent test set: 65 samples form M. musculus
     1.2 Generate CGR images in Matalb (2021b) with generate_CGR_images.m
-    1.3 Get the three-channel data of the image with the following parameter settings:
+    1.3 Get the three-channel data of the image in Python (Pycharm 2021) with the following parameter settings:
         IMAGE_SIZE = 256  # pixels
         GRAY_SCALE = False
         CHANNELS = 1 if GRAY_SCALE else 3
     2 Run the model
-        Run train_CFP_CGR.py for training and testing
+        Run train_CFP_CGR.py for training and testing in Python
     3 Interpret the output
         After running the model, the following six metric values are output:
             MiP, MiR, MiF, MiAUC, MaAUC and HL
