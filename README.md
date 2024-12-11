@@ -6,13 +6,16 @@
     torch==1.10.0
     torchvision==0.11.1
     keras==1.1.2
-    numpy==1.20.0
     pandas==1.1.0
     scipy==1.4.1
     tensorflow==2.2.0
     tensorboard==2.2.2
-    tqdm==4.66.4
-    h5py==2.10.0
+    protobuf==3.20.0
+    opencv-python==4.10.0.84
+    scikit-learn==1.3.2
+    scikit-multilearn==0.2.0
+    scikit-image==0.18.1
+    numpy==1.19.0
 
     # Setup instructions
     1 Install the dependencies corresponding to the Requirements;
