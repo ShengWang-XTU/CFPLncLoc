@@ -2,8 +2,7 @@ import cv2
 import numpy as np
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Dense, Flatten, Conv2D, MaxPooling2D
-from sklearn.model_selection import KFold
-# from skmultilearn.model_selection import IterativeStratification
+from skmultilearn.model_selection import IterativeStratification
 from sklearn import metrics as skmetrics
 from sklearn.metrics import accuracy_score, precision_score, hamming_loss
 from CFP import get_feature
@@ -57,9 +56,8 @@ EPOCHS = 10
 GRAY_SCALE = False
 CHANNELS = 1 if GRAY_SCALE else 3
 
-# Read labels 训练集
-file = open("data/label_729.csv", "rb")  # Open labels for training set of Dataset I
-# file = open("data/label_homo_219.csv", "rb")  # Open labels for training set of Dataset II
+# Read training set labels
+file = open("data/label_homo_219.csv", "rb")  # Open labels for training set
 lab = np.loadtxt(file, delimiter=',', skiprows=0)
 file.close()
 labi = []
@@ -71,9 +69,8 @@ for i in lab:
     labi.append(labj)
 labi = np.array(labi)
 
-# Read labels 留出测试集
-file = open("data/label_holdout_82.csv", "rb")  # Open labels for holdout test set of Dataset I
-# file = open("data/label_mus_65.csv", "rb")  # Open labels for independent test set of Dataset II
+# Read independent test set labels
+file = open("data/label_mus_65.csv", "rb")  # Open labels for independent test set
 lab_ho = np.loadtxt(file, delimiter=',', skiprows=0)
 file.close()
 labi_ho = []
@@ -86,12 +83,11 @@ for i in lab_ho:
 labi_ho = np.array(labi_ho)
 
 dd = 256
-# 训练集
+# train set
 X = []
 for c in range(len(lab)):
     print(c)
-    p = "data/CGR_729/CGR_" + str(dd) + "_" + str(c + 1) + ".png"  # Dataset I
-    # p = "data/CGR_homo_219/CGR_homo_" + str(dd) + "_" + str(c + 1) + ".png"  # Dataset II
+    p = "data/CGR_homo_219/CGR_homo_" + str(dd) + "_" + str(c + 1) + ".png"
     outs = get_feature(p)
     out = outs['layer1']
     outsq = np.squeeze(out)
@@ -101,7 +97,7 @@ for c in range(len(lab)):
 X = np.array(X)
 y = np.array(labi)
 
-# 留出测试集
+# independent test set
 X_ho = []
 for c in range(len(lab_ho)):
     print(c)
@@ -116,8 +112,7 @@ for c in range(len(lab_ho)):
 X_ho = np.array(X_ho)
 y_ho = np.array(labi_ho)
 
-kf = KFold(n_splits=5, shuffle=True, random_state=SEED)  # Dataset I
-# kf = IterativeStratification(n_splits=10, order=1)  # Dataset II
+kf = IterativeStratification(n_splits=10, order=1)
 
 one_ACC = []
 one_MyACC = []
@@ -143,12 +138,11 @@ one_MaAUC_ho = []
 one_MiAUC_ho = []
 one_Pat1_ho = []
 
-# 初始化KFold
-for train_index, valid_index in kf.split(X):  # 调用split方法切分数据    # Dataset I
-    # for train_index, valid_index in kf.split(X, y):  # 调用split方法切分数据    # Dataset II
+# initializ KFold
+for train_index, valid_index in kf.split(X, y):  # Call the split method to split the data
     X_train, X_val, y_train, y_val = X[train_index], X[valid_index], y[train_index], y[valid_index]
     model = Sequential()
-    # input layer: convolution layer of 64 neurons, 3x3 conv window & input shape 60x60x3
+    # input layer: convolution layer of 64 neurons, 3x3 conv window
     model.add(Conv2D(64, (3, 3), input_shape=X_train[0].shape, activation="relu"))
     model.add(MaxPooling2D(pool_size=(2, 2)))  # 2x2 pooling window
     # layer 2
@@ -158,8 +152,7 @@ for train_index, valid_index in kf.split(X):  # 调用split方法切分数据   
     model.add(Flatten())  # Convert 3D Feature to 1D before Dense layer
     model.add(Dense(64))
     # output layer
-    model.add(Dense(4, activation="sigmoid"))  #   4 = no. of labels
-    # model.add(Dense(3, activation="sigmoid"))  #   3 = no. of labels
+    model.add(Dense(3, activation="sigmoid"))  #   3 = no. of labels
     model.compile(loss="binary_crossentropy", optimizer="Adam", metrics=['accuracy'])
     model.fit(X_train, y_train, batch_size=BATCH_SIZE, epochs=EPOCHS, validation_data=(X_val, y_val))
 
@@ -262,7 +255,5 @@ avg_MaAUC_ho = np.mean(one_MaAUC_ho)
 avg_MiAUC_ho = np.mean(one_MiAUC_ho)
 avg_Pat1_ho = np.mean(one_Pat1_ho)
 
-print("5-CV MaAUC: %.3f" % avg_MaAUC)
-# print("10-SCV MaAUC: %.3f" % avg_MaAUC)
-print("Holdout MaAUC: %.3f" % avg_MaAUC_ho)
-# print("Independent MaAUC: %.3f" % avg_MaAUC_ho)
+print("10-SCV MaAUC: %.3f" % avg_MaAUC)
+print("Independent MaAUC: %.3f" % avg_MaAUC_ho)
