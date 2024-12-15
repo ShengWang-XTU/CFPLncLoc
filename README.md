@@ -30,6 +30,9 @@
         Dataset II
             Benchmark dataset: 219 samples from H. sapiens
             Independent test set: 65 samples form M. musculus
+        Dataset III
+            Benchmark dataset: 505 samples from H. sapiens
+            Independent test set: 805 samples form M. musculus
     1.2 Generate CGR images in Matalb (2021b) with generate_CGR_images.m
     1.3 Get the three-channel data of the image in Python (Pycharm 2021) with the following parameter settings:
         IMAGE_SIZE = 256  # pixels
