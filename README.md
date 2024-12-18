@@ -3,13 +3,13 @@
 
     # Requirements
     python==3.8
-    torch==1.10.0
-    torchvision==0.11.1
+    torch==1.10.0 or torch==1.13.1+cu117
+    torchvision==0.11.1 or torchvision==0.14.1+cu117
+    tensorflow==2.2.0 or tensorflow-gpu==2.2.0
+    tensorboard==2.2.2
     keras==1.1.2
     pandas==1.1.0
     scipy==1.4.1
-    tensorflow==2.2.0
-    tensorboard==2.2.2
     protobuf==3.20.0
     opencv-python==4.10.0.84
     scikit-learn==1.3.2
