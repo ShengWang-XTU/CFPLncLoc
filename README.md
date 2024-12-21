@@ -59,3 +59,4 @@
     3 Interpret the output
         After running the model, the following six metric values are output:
             MiP, MiR, MiF, MiAUC, MaAUC and HL
+	    AP, AvgF1 and P@1
