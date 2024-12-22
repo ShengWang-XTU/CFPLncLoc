@@ -59,6 +59,6 @@
     2 Run the model
         Run train_CFP_CGR.py for training and testing in Python
     3 Interpret the output
-        After running the model, the following six metric values are output:
+        After running the model, the following nine metric values are output:
             MiP, MiR, MiF, MiAUC, MaAUC and HL
 	    	AP, AvgF1 and P@1
