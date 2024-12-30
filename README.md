@@ -25,19 +25,19 @@
     3 Parameter Settings for scatter plot image printing, get three-channel data from image and CNN image classifier.
         A. Print scatter plot image
             pbaspect([1 1 1])                              % Sets the frame aspect ratio to 1:1:1
-	        set(gca, 'LooseInset', get(gca, 'TightInset'))
+	    set(gca, 'LooseInset', get(gca, 'TightInset')) % Remove white spaces
             set(gca, 'looseInset', [0 0 0 0])              % Completely remove the interval
-	        set(gcf, 'color', 'w')                         % Sets the background color to white
+	    set(gcf, 'color', 'w')                         % Sets the background color to white
         B. Get three-channel data from image
             IMAGE_SIZE = 256  # pixels
-	        GRAY_SCALE = False
-	        CHANNELS = 1 if GRAY_SCALE else 3
+	    GRAY_SCALE = False
+	    CHANNELS = 1 if GRAY_SCALE else 3
         C. CNN image classifier
             filters=64, kernel_size=(3, 3), activation="relu"
-	        pool_size=(2, 2)
-	        units=64/3, activation="sigmoid"
-	        loss="binary_crossentropy", optimizer="Adam", metrics=['accuracy']
-	        batch_size=64, epochs=10
+	    pool_size=(2, 2)
+	    units=64/3, activation="sigmoid"
+	    loss="binary_crossentropy", optimizer="Adam", metrics=['accuracy']
+	    batch_size=64, epochs=10
 
     # Usage guidelines
     1 Prepare input data
