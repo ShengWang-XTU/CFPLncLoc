@@ -1,1 +1,1 @@
-Our input is a picture
+Our input is a sample corresponding to an image
