@@ -15,7 +15,7 @@ IMAGE_UPDATE = 8
 
 def load():
     # Read training set labels
-    file = open("data/label_homo_219.csv", "rb")  # Open labels for training set
+    file = open("label_homo_219.csv", "rb")  # Open labels for training set
     lab = np.loadtxt(file, delimiter=',', skiprows=0)
     file.close()
     labi = []
@@ -28,7 +28,7 @@ def load():
     labi = np.array(labi)
 
     # Read independent test set labels
-    file = open("data/label_test.csv", "rb")  # Open labels for independent test set
+    file = open("label_mus_65.csv", "rb")  # Open labels for independent test set
     lab_ho = np.loadtxt(file, delimiter=',', skiprows=0)
     file.close()
     labi_ho = []
@@ -43,8 +43,8 @@ def load():
     # Load image input for training set
     X = []
     for c in range(len(lab)):
-        print(c)
-        p = "data/CGR_homo_219/CGR_homo_" + str(pow(2, IMAGE_UPDATE)) + "_" + str(c + 1) + ".png"
+        print(f"{c} / {len(lab)}")
+        p = "CGR_homo_219/CGR_" + str(pow(2, IMAGE_UPDATE)) + "_" + str(c + 1) + ".png"
         outs = get_feature(p)
         out = outs['layer1']
         outsq = np.squeeze(out)
@@ -57,8 +57,8 @@ def load():
     # Load image input for independent test set
     X_ho = []
     for c in range(len(lab_ho)):
-        print(c)
-        p = "data/CGR_test/CGR_mus_" + str(pow(2, IMAGE_UPDATE)) + "_" + str(c + 1) + ".png"
+        print(f"{c} / {len(lab_ho)}")
+        p = "CGR_mus_65/CGR_" + str(pow(2, IMAGE_UPDATE)) + "_" + str(c + 1) + ".png"
         outs = get_feature(p)
         out = outs['layer1']
         outsq = np.squeeze(out)
@@ -67,7 +67,7 @@ def load():
         X_ho.append(outT)
     X_ho = np.array(X_ho)
     y_ho = np.array(labi_ho)
-    return X, X_ho, y, y_ho
+    return X, y, X_ho, y_ho
 
 
 if __name__ == '__main__':
