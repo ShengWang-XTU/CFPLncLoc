@@ -67,7 +67,7 @@ After running the model, the results of the following nine evaluation metrics ar
 ### 3.5 Example fo testing
 Run the main program main.py in the example folder\
 Input
->The folders CGR_homo_219 and CGR_mus_65 store the input image features
+>The folders “CGR_homo_219” and “CGR_mus_65” store the input image features for cross-validation and testing, respectively
 
 Output
 >test_results.txt is the output results of the nine evaluation metrics\
