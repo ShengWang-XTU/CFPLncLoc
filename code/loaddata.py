@@ -43,7 +43,7 @@ def load():
     # Load image input for training set
     X = []
     for c in range(len(lab)):
-        print(c)
+        print(f"{c} / {len(lab)}")
         p = "data/CGR_homo_219/CGR_homo_" + str(pow(2, IMAGE_UPDATE)) + "_" + str(c + 1) + ".png"
         outs = get_feature(p)
         out = outs['layer1']
@@ -57,7 +57,7 @@ def load():
     # Load image input for independent test set
     X_ho = []
     for c in range(len(lab_ho)):
-        print(c)
+        print(f"{c} / {len(lab_ho)}")
         p = "data/CGR_mus_65/CGR_mus_" + str(pow(2, IMAGE_UPDATE)) + "_" + str(c + 1) + ".png"
         outs = get_feature(p)
         out = outs['layer1']

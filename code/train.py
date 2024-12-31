@@ -53,6 +53,8 @@ def CFPLncLoc(X, y, X_ho, y_ho, BATCH_SIZE, EPOCHS):
 
         # predict batch
         y_prob = model.predict(X_val)
+        # Save cross-validation predicted probabilities
+        np.savetxt("cross_validation_y_prob.txt", y_prob)
         y_pred = []
         for yi in y_prob:
             y_predi = []
@@ -75,7 +77,10 @@ def CFPLncLoc(X, y, X_ho, y_ho, BATCH_SIZE, EPOCHS):
         MiAUC = skmetrics.roc_auc_score(y_val, y_prob, average='micro')
         Pat1 = PrecisionInTop(y_prob, y_val, n=1)
 
+        # Holdout test
         y_prob_ho = model.predict(X_ho)
+        # Save holdout test predicted probabilities
+        np.savetxt("cross_validation_y_prob_ho.txt", y_prob_ho)
         y_pred_ho = []
         for yi in y_prob_ho:
             y_predi = []

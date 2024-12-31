@@ -1,8 +1,8 @@
 clc
 clear
 tic;
-[Name, Seq] = fastaread("data/seq_homo_219.fasta");  % Training set (homo)
-% [Name, Seq] = fastaread("data/seq_mus_65.fasta");  % Independent test set (mus)
+% [Name, Seq] = fastaread("seq_homo_219.fasta");  % Training set (homo)
+[Name, Seq] = fastaread("seq_test.fasta");  % Independent test set (mus)
 lenstd = 256;  % 2^p, p=8, The image update parameter p corresponds to the number of new image scatter points
 for ind = 1:length(Seq)
     disp(ind)
@@ -59,8 +59,8 @@ for ind = 1:length(Seq)
     axis off
     frame = getframe(fig);
     img = frame2im(frame);
-    eval(['imwrite(img, "data/CGR_homo_219/CGR_', num2str(lenstd),'_', num2str(ind), '.png");']); % save training set (homo)
-    % eval(['imwrite(img, "data/CGR_mus_65/CGR_', num2str(lenstd),'_', num2str(ind), '.png");']); % save independent test set (mus)
+    % eval(['imwrite(img, "CGR_homo_219/CGR_', num2str(lenstd),'_', num2str(ind), '.png");']); % save training set (homo)
+    eval(['imwrite(img, "CGR_test/CGR_', num2str(lenstd),'_', num2str(ind), '.png");']); % save independent test set (mus)
     close all
 end
 toc
