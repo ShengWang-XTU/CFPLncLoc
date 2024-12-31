@@ -1,1 +1,1 @@
-This is a training sample provided that contains only two test samples.
+This is a sample test on a Dataset II.
