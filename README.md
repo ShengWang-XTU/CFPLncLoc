@@ -65,4 +65,10 @@ After running the model, the results of the following nine evaluation metrics ar
 >MiP, MiR, MiF, MiAUC, MaAUC and HL\
 >AP, AvgF1 and P@1
 ### 3.5 Example fo testing
-Run the main program main.py in the example folder
+Run the main program main.py in the example folder\
+Input
+>The folders CGR_homo_219 and CGR_mus_65 store the input image features
+
+Output
+>test_results.txt is the output results of the nine evaluation metrics\
+>test_y_prob.txt is the predicted probability of each sample
