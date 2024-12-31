@@ -41,7 +41,7 @@ Download pre-trained model (resnet101) from https://download.pytorch.org/models/
 >batch_size=64, epochs=10
 
 ## 3 Usage guidelines
-### 2.1 Prepare input data
+### 3.1 Prepare input data
 #### Dataset I
 >Benchmark dataset: 729 samples from H. sapiens\
 >Independent test set: 82 samples form H. sapiens
@@ -51,16 +51,18 @@ Download pre-trained model (resnet101) from https://download.pytorch.org/models/
 #### Dataset III
 >Benchmark dataset: 505 samples from H. sapiens\
 >Independent test set: 805 samples form M. musculus
-### 2.2 Generate CGR images in Matalb (2021b)
-run generate_CGR_images.m to generate CGR images in batches
+### 3.2 Generate CGR images in Matalb (2021b)
+Run generate_CGR_images.m to generate CGR images in batches
 >cgr.m is a subfunction that produces a CGR image of a sample
-### 2.3 Run CFPLncLoc model in Python (Pycharm 2021)
+### 3.3 Run CFPLncLoc model in Python (Pycharm 2021)
 Run the main program main.py to get the cross-validation and test results
 >loaddata.py is a subroutine for loading CGR image features as inputs\
 >CFP.py is a subfunction for obtaining CGR image features (based on the multi-scale feature fusion model in computer vision)\
 >train.py is a subroutine for CFPLncLoc model training\
 >metrics.py is a subroutine for calculating the evaluation metrics AvgF1 and P@1
-### 2.4 Interpret the output
+### 3.4 Interpret the output
 After running the model, the results of the following nine evaluation metrics are saved in the results folder:
 >MiP, MiR, MiF, MiAUC, MaAUC and HL\
 >AP, AvgF1 and P@1
+### 3.5 Example fo testing
+Run the main program main.py in the example folder
