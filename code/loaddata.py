@@ -67,7 +67,7 @@ def load():
         X_ho.append(outT)
     X_ho = np.array(X_ho)
     y_ho = np.array(labi_ho)
-    return X, X_ho, y, y_ho
+    return X, y, X_ho, y_ho
 
 
 if __name__ == '__main__':
