@@ -47,6 +47,18 @@ for ind = 1:length(Seq)
                 yu = yu;
             end
         end
+    elseif lenrat >= 256 && lenrat < 1024
+        [x, y] = cgr(data);
+        xu = []; yu = [];
+        for i = 1:length(x)
+            if x(i) <= 1/16 && y(i) <= 1/16
+                xu = [xu x(i)*16];
+                yu = [yu y(i)*16];
+            else
+                xu = xu;
+                yu = yu;
+            end
+        end
     else
         [xu, yu] = cgr(data);
     end
