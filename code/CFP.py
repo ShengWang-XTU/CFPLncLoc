@@ -1,4 +1,3 @@
-
 import torch
 import torchvision.transforms as transforms
 import torch.nn as nn
@@ -8,15 +7,21 @@ import skimage.transform
 import numpy as np
 import torchvision.models as models
 import os
+
 os.environ['KMP_DUPLICATE_LIB_OK'] = 'True'
+
+
+""" Cited from "Centralized Feature Pyramid for Object Detection" """
+""" DOI: https://doi.org/10.1109/TIP.2023.3297408 """
 
 
 # The following module filters the output of the feature maps of the specified layers according to the specified model.
 # If unspecified, i.e. extracted_layers is None, then all feature maps are output as a dictionary.
 # In addition, since the fully connected layer itself is one-dimensional,
 # there is no need to output it, so it is filtered.
-
 class FeatureExtractor(nn.Module):
+    """ Multi-scale feature fusion feature extraction """
+
     def __init__(self, submodule, extracted_layers):
         super(FeatureExtractor, self).__init__()
         self.submodule = submodule
@@ -34,6 +39,7 @@ class FeatureExtractor(nn.Module):
 
 
 def get_picture(pic_name, transform):
+    """ Obtaining original CGR image data """
     img = skimage.io.imread(pic_name)
     # Due to the blank space at the edge of the CGR scatter plot, we only intercept the part with scatter in the image
     img = img[6: 400, 83: 477]
@@ -42,20 +48,14 @@ def get_picture(pic_name, transform):
     return transform(img)
 
 
-def make_dirs(path):
-    if os.path.exists(path) is False:
-        os.makedirs(path)
-
-
 def get_feature(pic_dir):
-
+    """ Obtaining Multiscale Fusion Features for CGR Images """
     transform = transforms.ToTensor()
     img = get_picture(pic_dir, transform)
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     # Insert dimension
     img = img.unsqueeze(0)
     img = img.to(device)
-
     # The main parameters here are the network to be extracted, the weights of the network, the layers to be extracted,
     # the size of the specified image enlargement, the storage path and so on.
     net = models.resnet101().to(device)

@@ -1,4 +1,5 @@
-
+%% Cited from "Chaos game representation of gene structure"
+%% DOI: https://doi.org/10.1093/nar/18.8.2163
 function [x, y] = cgr(seq)
     len = length(seq); % Length of the sequence
     x(1) = 0.5; y(1) = 0.5; % Assumed initial point that will eventually be deleted.
