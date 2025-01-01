@@ -14,6 +14,7 @@ IMAGE_UPDATE = 8
 
 
 def load():
+    """ Obtaining and loading input features for CFPLncLoc models """
     # Read training set labels
     file = open("label_homo_219.csv", "rb")  # Open labels for training set
     lab = np.loadtxt(file, delimiter=',', skiprows=0)

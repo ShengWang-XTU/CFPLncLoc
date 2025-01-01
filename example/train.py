@@ -9,7 +9,7 @@ from metrics import AvgF1, PrecisionInTop
 
 
 def CFPLncLoc(X, y, X_ho, y_ho, BATCH_SIZE, EPOCHS):
-
+    """ Training the CFPLncLoc model and obtaining predictive probability and evaluation metrics results """
     one_MiP = []
     one_MiR = []
     one_MiF = []
